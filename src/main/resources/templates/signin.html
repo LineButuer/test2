@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로그인</title>
+<link rel="stylesheet" th:href="@{/css/signin.css}">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<!-- jQuery 로드 구문 -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        // 페이지가 로드될 때 메시지를 가져와서 표시
+        var message = [[${msg}]];
+
+        if (message.trim() !== "") {
+            alert(message);
+        }
+    });
+
+    function findEmail() {
+        // 이메일 찾기 페이지로 이동
+        window.location.href = "findEmail";
+    }
+
+    function resetPassword() {
+        // 비밀번호 재설정 페이지로 이동
+        window.location.href = "resetPassword";
+    }
+</script>
+
+</head>
+<body>
+	<!-- 헤더 -->
+	<th:block th:replace="~{fragments/header :: header}"></th:block>
+	<!-- 회원가입 텍스트 -->
+	<div class="center-eng-text">S i g n I n</div>
+	<!-- <div class="center-ko-text">로그인</div> -->
+	<div class="write-line"></div>
+	<!-- 로그인 폼 태그 -->
+	<form id="signin-form" action="signinProc" method="post">	
+			<!-- 이메일 작성 박스 -->
+			<input class="email-write-box" type="email" id="m_email"
+				name="m_email" required placeholder="이메일">
+			<!-- 비밀번호 작성 박스 -->
+			<input class="password-write-box" type="password" id="m_pw"
+				name="m_pw" required placeholder="비밀번호">
+		<!-- 로그인 버튼 -->
+		<button class="login-button" type="submit">로그인</button>
+		<!-- 이메일 찾기 버튼 -->
+		<button class="email-find-button" onclick="findEmail()">이메일 찾기</button>
+		<!-- 비밀번호 찾기 버튼 -->
+		<button class="password-find-button" onclick="resetPassword()">비밀번호
+			찾기</button>
+	</form>
+	<!-- 푸터 -->
+	<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>

@@ -1,0 +1,192 @@
+@charset "UTF-8";
+* {
+   box-sizing: border-box;
+}
+
+html {
+   height: 100%;
+}
+
+body {
+   margin: 0;
+   height: 105%;
+   display: flex;
+   flex-direction: column;
+   font-family: 'SUITE', sans-serif;
+}
+/* SignUp 영문 텍스트 */
+.center-eng-text {
+    text-align: center;
+    color: black;
+    position: relative;
+    top: 5%; 
+    font-size: 24px;
+    font-weight: bold;
+}
+/* 회원가입 한글 텍스트 */
+.center-ko-text {
+    text-align: center;
+    color: black;
+    position: relative;
+    top: 7%; 
+    font-size: 16px;
+}
+/* 텍스트 종료 라인 */
+.write-line {
+	width: 15%;
+	border-top: 1px solid gray;
+	margin: 0 auto;
+	position: relative;
+	top: 10%;
+}
+/* 이름 작성 박스 */
+.name-write-box {
+    position: absolute; 
+	top: 45%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 	
+    width: 25%;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid gray;
+    color: black;
+    font-size: 14px;
+}
+/* 전화번호 작성 박스 */
+.phone-write-box {
+    position: absolute; 
+	top: 55%;
+    left: 50%; 
+    transform: translate(-50%, -50%); 	
+    width: 25%;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid gray;
+    color: black;
+    font-size: 14px;
+}
+/* 인풋 미리보기 텍스트 */
+input::placeholder {
+   font-size: 14px;
+   text-align: left;
+}
+/* 성별 선택 박스 */
+.gender-box {
+	position: absolute; 
+   	top: 65%;
+    left: 50%; 
+    transform: translate(-50%, -50%);    
+    width: 25%;
+    height: 30px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px solid gray;
+    color: gray;
+    font-size: 14px;
+    display: flex;
+}
+/* 성별 선택 박스 텍스트 */
+.gender-text {
+	position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 10px;
+}
+/* 남성 체크 박스 */
+.male-array {
+    position: absolute;
+    bottom: 25%;
+    right: 25%;
+}
+/* 여성 체크 박스 */
+.female-array {
+   position: absolute;
+    bottom: 25%;
+    right: 0;
+}
+/* 남성 체크 박스 텍스트 */
+.gender-male-text {
+    position: relative;
+	font-size: 14px;
+	font-weight: bold;
+	top: 1px;
+}
+/* 여성 체크 박스 텍스트 */
+.gender-female-text {
+    position: relative;
+	font-size: 14px;
+	font-weight: bold;
+	top: 1px;
+}
+/* 가입 버튼 */
+.center-button {
+    background-color: black;
+    color: white;
+    font-weight: bold; 
+    width: 25%;
+    height: 30px;
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    line-height: 30px;
+    text-decoration-line: none;
+    border-radius: 3px;
+    font-size: 10px;
+}
+
+[type="radio"], span {
+  vertical-align: middle;
+}
+
+[type="radio"] {
+  appearance: none;
+  border: max(2px, 0.1em) solid gray;
+  border-radius: 50%;
+  width: 2.25em;
+  height: 2.25em;
+  transition: border 0.2s ease-in-out;
+}
+
+[type="radio"]:checked {
+  border: 0.7em solid blue;
+}
+
+[type="radio"]:focus-visible {
+  outline-offset: max(2px, 0.1em);
+  outline: max(2px, 0.1em) dotted tomato;
+}
+
+[type="radio"]:hover {
+  box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+  cursor: pointer;
+}
+
+[type="radio"]:hover + span {
+  cursor: pointer;
+}
+
+[type="radio"]:disabled {
+  background-color: lightgray;
+  box-shadow: none;
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+[type="radio"]:disabled + span {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.name-write-box:focus {
+    outline: none; 
+}
+.phone-write-box:focus {
+    outline: none; 
+}

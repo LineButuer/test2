@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<link rel="stylesheet" th:href="@{/css/index.css}">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script th:inline="javascript">
+    $(document).ready(function() {
+        // 페이지가 로드될 때 메시지를 가져와서 표시
+        var message = [[${msg}]];
+
+        if (message.trim() !== "") {
+            alert(message);
+        }
+    });
+  
+  function goToScroll(targetId) {
+    var target = document.getElementById(targetId);
+    if (target) {
+        var offsetTop = target.offsetTop;
+        var windowHeight = window.innerHeight;
+        var targetHeight = target.offsetHeight;
+        var scrollToPosition = offsetTop - (windowHeight / 5) + (targetHeight / 5);
+        window.scrollTo({ top: scrollToPosition, behavior: 'smooth' });
+    }
+}
+</script>
+
+</head>
+<body>
+	<!-- 헤더 -->
+	<div id="h1_container">
+		<div id="home"></div>
+	</div>
+	<th:block th:replace="~{fragments/header :: header}"></th:block>
+	<!-- 슬라이드 배너 -->
+	<div class="slider-background">
+		<div class="slider">
+			<div class="slide">
+				<img src="/images/1 (1).jpg">
+			</div>
+			<div class="slide">
+				<img src="/images/1 (2).jpg">
+			</div>
+			<div class="slide">
+				<img src="/images/1 (3).jpg">
+			</div>
+		</div>
+	</div>
+	<!-- 위치변경 버튼 -->
+	<div class="btn-center">
+		<div class="btn-group" role="group" aria-label="Basic example">
+			<a class="btn btn-secondary custom-btn"
+				onclick="goToScroll('make_place')">Make Plan</a> <a
+				class="btn btn-secondary custom-btn"
+				onclick="goToScroll('location')">Location</a> <a
+				class="btn btn-secondary custom-btn" onclick="goToScroll('theme2')">Theme</a>
+			<a class="btn btn-secondary custom-btn"
+				onclick="goToScroll('with_who')">With Whom</a> <a
+				class="btn btn-secondary custom-btn"
+				onclick="goToScroll('home')">Top</a>
+		</div>
+	</div>
+	<!-- <div class="home-retrun">
+		<a class="btn btn-secondary home-retrun-background"
+				onclick="goToScroll('home')">
+			<img class="white-arrow" alt="화살표 이미지" src="/images/whiteArrow.png">
+		</a>
+	</div> -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Make Plan 위치 -->
+	<div id="h1_container">
+		<h1 id="make_place">설레는 여행, 그 시작은 멋진 계획에서!</h1>
+	</div>
+	<div class="text-line"></div>
+
+	<!-- 필터 박스 정렬 -->
+	<div class="container">
+		<div class="make-box">
+			<form id="searchForm" action="placeList" method="GET">
+				<!-- 장소 드롭다운 -->
+
+				<select name="p_location" id="p_location">
+					<option value="" disabled selected hidden>장소</option>
+					<option value="서울">서울</option>
+					<option value="인천">인천</option>
+					<option value="대구">대구</option>
+					<option value="대전">대전</option>
+					<option value="울산">울산</option>
+					<option value="부산">부산</option>
+					<option value="광주">광주</option>
+					<option value="경기도">경기도</option>
+					<option value="강원도">강원도</option>
+					<option value="경상도">경상도</option>
+					<option value="전라도">전라도</option>
+					<option value="충청도">충청도</option>
+					<option value="제주도">제주도</option>
+
+				</select>
+				<!-- 테마 드롭다운 -->
+				<select name="p_thema" id="p_thema">
+
+					<option value="" disabled selected hidden>테마</option>
+					<option value="놀이공원">놀이공원</option>
+					<option value="맛집탐방">맛집탐방</option>
+					<option value="역사여행">역사여행</option>
+					<option value="반려동물과 함께하는 여행">반려동물과 함께하는 여행</option>
+					<option value="가족여행">가족여행</option>
+					<option value="데이트">데이트</option>
+					<option value="우정여행">우정여행</option>
+					<option value="나홀로">나홀로</option>
+
+				</select>
+				<!-- 검색 버튼 -->
+				<button id="submitBtn" type="button">
+					<img src="/images/2946467-200.png" width="50" height="50"
+						alt="Search Icon">
+				</button>
+
+			</form>
+			<script>
+			    document.getElementById("submitBtn").addEventListener("click", function() {
+			        var form = document.getElementById("searchForm");
+			        form.submit(); // 폼 제출
+			    });
+			</script>
+
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Location 위치 -->
+	<div id="h1_container">
+		<h1 id="location">어디로 떠날까요?</h1>
+		<div class="routerWithArrow">
+			<a href="#" onclick="imageClicked('')">
+				<button class="see-more" type="button">
+					더보기  >
+				</button>
+			</a>
+		</div>
+	</div>
+	<div class="text-line"></div>
+	<!-- 이미지 정렬 -->
+	<div class="image-container">
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClicked('서울')"> <img
+				src="/images/seoul.jpg" alt="Image 1" width="238" height="238">
+				<div class="caption">서울</div>
+			</a>
+		</div>
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClicked('부산')"> <img
+				src="/images/busan.jpg" alt="Image 2" width="238" height="238">
+				<div class="caption">부산</div>
+			</a>
+		</div>
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClicked('인천')"> <img
+				src="/images/incheon.jpg" alt="Image 3" width="238" height="238">
+				<div class="caption">인천</div>
+			</a>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Theme 위치 -->
+
+
+	<div id="h1_container">
+		<h1 id="theme2">테마별로 즐기는 특별한 경험, 어떤 테마가 궁금하신가요?</h1>
+		<div class="routerWithArrow">
+			<a href="#" onclick="imageClickedTheme('')">
+				<button class="see-more" type="button">
+					더보기  >
+				</button>
+			</a>
+		</div>
+	</div>
+	<div class="text-line"></div>
+	<!-- 이미지 정렬 -->
+	<div class="image-container">
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClickedTheme('가족여행')"> <img
+				src="/images/theme1.jpg" alt="Image 1" width="238" height="238">
+				<div class="caption">가족여행</div>
+			</a>
+		</div>
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClickedTheme('데이트')"> 
+			<img src="/images/theme2.jpg" alt="Image 2" width="238" height="238">
+				<div class="caption">데이트</div>
+			</a>
+		</div>
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClickedTheme('우정여행')"> <img
+				src="images/js1.jpg" alt="Image 3" width="238" height="238">
+				<div class="caption">우정여행</div>
+			</a>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- With who 위치 -->
+
+	<div id="h1_container">
+		<h1 id="with_who">누구와 떠나면 좋을까요? 친구, 가족, 연인... 선택은 당신의 몫!</h1>
+		<div class="routerWithArrow">
+		<a href="#" onclick="imageClickedTheme('')">
+			<button class="see-more" type="button">
+				더보기  >
+			</button>
+		</a>
+		</div>
+	</div>
+	<div class="text-line"></div>
+	<!-- 이미지 정렬 -->
+	<div class="image-container">
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClickedTheme('가족여행')"> 
+			<img src="/images/fam1.jpg" alt="Image 1" width="317" height="317">
+				<div class="caption">가족</div>
+			</a>
+		</div>
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClickedTheme('데이트')"> 
+			<img src="/images/coup3.png" alt="Image 2" width="317" height="317">
+				<div class="caption">연인</div>
+			</a>
+		</div>
+		<div class="image-wrapper">
+			<a href="#" onclick="imageClickedTheme('우정여행')"> 
+			<img src="/images/fre3.jpeg" alt="Image 3" width="317" height="317">
+				<div class="caption">친구</div>
+			</a>
+		</div>
+	</div>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+	<script>
+
+    function imageClicked(p_location) {
+        // 파라미터와 함께 URL 생성
+        var url = "placeListByLocation?p_location=" + p_location;
+        // 해당 URL로 이동
+        window.location.href = url;
+    }
+    function imageClickedTheme(p_thema) {
+        // 파라미터와 함께 URL 생성
+        var url = "placeListByTheme?p_thema=" + p_thema;
+        // 해당 URL로 이동
+        window.location.href = url;
+    }
+    </script>
+</body>
+</html>

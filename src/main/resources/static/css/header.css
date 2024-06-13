@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+.header {
+    background-color: black;
+    height: 50px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    z-index: 3;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.logo {
+    margin: 0;
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+}
+
+.logo a {
+    margin: 0;
+    font-size: 24px;
+    text-decoration: none;
+    color: white;
+}
+.header-right {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.header-right a {
+    color: white;
+    text-decoration: none;
+}
+
+.header-right .logo:hover {
+    text-decoration: underline; /* 로고에 호버 시 밑줄 표시 */
+}
+
+.header-right a:nth-child(n+2) {
+    color: white;
+}

@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	font-family: 'SUITE', sans-serif;
+}
+/* 첫화면 이미지 정렬 박스 */
+.previews {
+	width: 100%;
+	margin: 0 auto;
+	position: relative;
+}
+/* 메인 이미지 */
+.preview-img {
+	width: 100%;
+	height: 550px;
+	background-color: black;
+	position: relative;
+}
+.preview-img img{
+	width: 100%;
+	height: 500px;
+	background-color: black;
+	position: relative;
+}
+
+.text-start-line {
+	width: 80%;
+	border-top: gray 1px solid;
+	position: relative;
+	margin: 0 auto;
+}
+/* 장소 이름 */
+.place-name {
+	color: black;
+	font-size: 36px;
+	font-weight: bold;
+	position: relative;
+	width: fit-content;
+	left: 10%;
+	top: 50px;
+}
+/* 지역 이름 */
+.place-location {
+	color: black;
+	font-size: 24px;
+	position: relative;
+	margin-left: 10%;
+	top: 50px;
+}
+/* 세부 디테일 장소글 */
+.place-detail-description {
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+	position: relative;
+	text-align: center;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 2%;
+	border: 1px solid black;
+}
+/* 세부 디테일 정렬 박스 */
+.place-detail-array-box {
+	position: relative;
+}
+/* 세부 디테일 이미지 */
+.place-detail-description-img {
+	height: 500px;
+	width: 75%;
+	background-color: black;
+	position: relative;
+	margin: 0 auto;
+	margin-top: 10%;
+}
+/* 조회수, 별점 정렬 */
+.views-array {
+	height: 10%;
+	width: 70%;
+	margin: 0 auto;
+}
+/* 조회수 */
+.views {
+	color: black;
+	font-size: 14px;
+	font-weight: bold;
+	float: right;
+}

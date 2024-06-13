@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.finalpro.start.dao.PlaceDAO">
+	<insert id="upLoadPlaceProc" parameterType="place">
+		INSERT INTO
+		place.placetbl
+		(p_name, p_location, p_description, p_thema, p_iname,
+		p_views, p_stScore, p_price, x, y)
+		VALUES
+		(#{p_name}, #{p_location},
+		#{p_description},
+		#{p_thema}, #{p_iname}, #{p_views}, #{p_stScore},
+		#{p_price} , #{x}, #{y})
+	</insert>
+	<select id="getPlaceList" resultType="place">
+		SELECT * FROM place.placetbl
+		<where>
+			<if test="p_location != null and p_location != 'defaultLocation'">
+				p_location = #{p_location}
+			</if>
+			<if test="p_thema != null and p_thema != 'defaultThema'">
+				<if test="p_location != null and p_location != 'defaultLocation'">
+					AND
+				</if>
+				p_thema = #{p_thema}
+			</if>
+			<!-- 추가된 부분: 파라미터가 null이면 모든 레코드 반환 -->
+			<if test="p_location == null and p_thema == null">
+				<!-- 아무런 조건 없이 모든 레코드를 반환하는 SQL -->
+				1=1
+			</if>
+		</where>
+	</select>
+	<select id="findById" parameterType="int" resultType="place">
+		SELECT *
+		FROM place.placetbl
+		WHERE p_id=#{p_id}
+	</select>
+	<update id="increaseViews" parameterType="int">
+		UPDATE place.placetbl
+		SET p_views=p_views + 1
+		WHERE p_id=#{p_id}
+	</update>
+	<select id="placeListByLocation" parameterType="String"
+		resultType="place">
+		SELECT * FROM place.placetbl
+		WHERE p_location=#{p_location}
+	</select>
+	<select id="placeListByTheme" parameterType="String"
+		resultType="place">
+		SELECT * FROM place.placetbl
+		WHERE p_thema=#{p_thema}
+	</select>
+	<insert id="insertPlace" parameterType="Place">
+		INSERT INTO
+		place.selectPlacetbl (s_name, s_location)
+		VALUES (#{s_name},
+		#{s_location})
+	</insert>
+	<update id="updatePlaceProc" parameterType="place">
+		UPDATE place.placetbl
+		SET
+		p_name=#{p_name},
+		p_location=#{p_location},
+		p_description=#{p_description},
+		p_thema=#{p_thema},
+		p_iname=#{p_iname}
+		WHERE p_id=#{p_id}
+	</update>
+	<select id="searchByRegion" parameterType="java.util.List"
+		resultType="com.finalpro.start.dto.PlaceDTO">
+		SELECT p_id, p_name, p_location, p_stScore, p_iname
+		FROM place.placetbl
+		WHERE
+		<foreach item="region" collection="regions" open="("
+			separator=" OR " close=")">
+			p_name LIKE CONCAT('%', #{region}, '%')
+		</foreach>
+	</select>
+	<select id="searchByTheme" parameterType="java.util.List"
+		resultType="com.finalpro.start.dto.PlaceDTO">
+		SELECT p_id, p_name, p_location, p_stScore, p_iname
+		FROM place.placetbl
+		WHERE
+		<foreach item="theme" collection="themes" open="("
+			separator=" OR " close=")">
+			p_thema LIKE CONCAT('%', #{theme}, '%')
+		</foreach>
+	</select>
+	<select id="searchByFilters" parameterType="map"
+		resultType="com.finalpro.start.dto.PlaceDTO">
+		SELECT p_id, p_name, p_location, p_stScore, p_iname
+		FROM place.placetbl
+		WHERE 1=1
+		<if
+			test="(mainRegions != null and !mainRegions.isEmpty()) and (subregions == null or subregions.isEmpty())">
+			AND (
+			<foreach item="region" collection="mainRegions" open="("
+				separator=" OR " close=")">
+				p_location = #{region}
+			</foreach>
+			)
+		</if>
+		<if test="mainRegions != null and !mainRegions.isEmpty()">
+			AND (
+			<foreach item="region" collection="mainRegions" open="("
+				separator=" OR " close=")">
+				p_location = #{region}
+			</foreach>
+			)
+			<if test="subregions != null and !subregions.isEmpty()">
+				AND (
+				<foreach item="subregion" collection="subregions" open="("
+					separator=" OR " close=")">
+					p_name LIKE CONCAT('%', #{subregion}, '%')
+				</foreach>
+				)
+			</if>
+		</if>
+		<if test="themes != null and !themes.isEmpty()">
+			AND (
+			<foreach item="theme" collection="themes" open="("
+				separator=" OR " close=")">
+				p_thema = #{theme}
+			</foreach>
+			)
+		</if>
+	</select>
+
+
+	<select id="fetchPlacesLocation" parameterType="String"
+		resultType="place">
+		SELECT p_name, p_location, p_description, p_iname
+		FROM
+		place.placetbl
+		WHERE p_location=#{location}
+	</select>
+	<select id="fetchPlacesTheme" parameterType="String"
+		resultType="place">
+		SELECT p_name, p_location, p_description, p_iname
+		FROM
+		place.placetbl
+		WHERE p_thema=#{theme}
+	</select>
+	<select id="deletePlace" parameterType="int">
+		DELETE
+		FROM place.placetbl
+		WHERE p_id=#{p_id}
+	</select>
+	<select id="searchByKeyword" parameterType="String"
+		resultType="place">
+		SELECT p_name, p_location, p_description, p_iname
+		FROM place.placetbl
+		WHERE p_name LIKE CONCAT('%', #{query}, '%')
+		OR p_location LIKE CONCAT('%', #{query}, '%')
+		OR p_description LIKE CONCAT('%', #{query}, '%')
+		OR p_thema LIKE CONCAT('%' ,#{query}, '%')
+	</select>
+
+
+</mapper>

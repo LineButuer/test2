@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<link href="https://cdn.jsdelivr.net/gh/sun-typeface/SUITE/fonts/static/woff2/SUITE.css" rel="stylesheet">
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<link rel="stylesheet" th:href="@{/css/signup.css}">
+<link rel="stylesheet" th:href="@{/css/header.css}">
+<link rel="stylesheet" th:href="@{/css/footer.css}">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+	<!-- 헤더 -->
+	<th:block th:replace="~{fragments/header :: header}"></th:block>
+	<!-- 회원가입 텍스트 -->
+	<div class="center-eng-text">S i g n U p</div>
+	<!-- <div class="center-ko-text">회원가입</div> -->
+	<div class="write-line"></div>
+	<!-- 회원가입 폼 태그 -->
+	<form class="form" action="signupProc" method="post">
+		<!-- 이메일 작성 박스 -->
+		<input class="email-write-box" type="email" id="m_email"
+			name="m_email" required placeholder="이메일을 작성해주세요.">
+		<!-- 이메일 중복 체크 -->
+		<button class="email-check" type="button" id="checkEmail">
+			이메일 중복 확인
+		</button>
+		<!-- 비밀번호 작성 박스 -->
+		<input class="password-write-box" type="password" id="m_pw"
+			name="m_pw" required placeholder="비밀번호를 작성해주세요."> 
+		<!-- 이름 작성 박스 -->	
+		<input class="name-write-box" type="text" id="m_name" name="m_name" required
+			placeholder="성함을 작성해주세요."> 
+		<!-- 전화번호 작성 박스 -->	
+		<input class="phone-write-box" type="text" id="m_phone" name="m_phone" required
+			placeholder="전화번호를 작성해주세요.( '-' 빼고 입력)">
+		<!-- 생년월일 선택 박스 -->
+		<div class="YY">
+			<div class="yy-write-box">
+    			<input type="date" id="m_birthday" name="m_birthday" min="1950-01-01" max="2050-01-01">
+			</div>
+		</div>
+		<!-- 성별 선택 박스 -->
+		<div class="gender-box">
+			성별을 선택해주세요.
+			<div class="male-array">
+				<input class="gender-male" type="radio" id="male" name="m_gender"
+					value="male"> <span class="gender-male-text">남성</span>
+			</div>
+			<div class="female-array">
+				<input class="gender-female" type="radio" id="female"
+					name="m_gender" value="female"> <span
+					class="gender-female-text">여성</span>
+			</div>
+		</div>
+		<!-- 가입 버튼 -->
+		<input class="center-button" type="submit" value="가입하기">
+	</form>
+	<!-- 푸터 -->
+	<th:block th:replace="~{fragments/footer :: footer}"></th:block>
+	<script>
+    $(document).ready(function() {
+        // 현재 날짜를 가져오는 함수
+        function getCurrentDate() {
+            var today = new Date();
+            var year = today.getFullYear();
+            var month = ('0' + (today.getMonth() + 1)).slice(-2);
+            var day = ('0' + today.getDate()).slice(-2);
+            return year + '-' + month + '-' + day;
+        }
+
+        // 오늘 날짜를 가져와서 입력란의 value로 설정
+        var today = getCurrentDate();
+        $('#m_birthday').val(today);
+
+        $('#checkEmail').click(function() {
+            var m_email = $('#m_email').val();
+            if (!m_email) {
+                alert('이메일을 입력해주세요.');
+                return;
+            }
+            if (!validateEmail(m_email)) {
+                alert('유효한 이메일 형식이 아닙니다.');
+                return;
+            }
+            $.ajax({
+                type : 'POST',
+                url : 'checkEmail', // 이메일 중복 확인을 처리할 서버 측 URL
+                data : {
+                    m_email : m_email
+                },
+                success : function(response) {
+                    if (response == 'available') {
+                        alert('사용 가능한 이메일입니다.');
+                    } else if (response == 'exists') {
+                        alert('이미 등록된 이메일입니다.');
+                    } else {
+                        alert('이메일 중복 확인에 실패했습니다.');
+                    }
+                }
+            });
+        });
+    });
+
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    }
+</script>
+</body>
+</html>

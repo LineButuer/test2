@@ -1,0 +1,277 @@
+@charset "UTF-8";
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   font-family: 'SUITE', sans-serif;
+}
+/* 슬라이드 바탕 */
+.slider-background {
+	width: 100%;
+	height: 585px;
+	background-color: black;
+}
+/* 슬라이드 크기 */
+.slider {
+	display: flex;
+	position: relative;
+	overflow: hidden;
+	width: 100%;
+	margin: 0 auto; 
+	height: 575px;
+	top: 10px;
+}
+/* 슬라이드 될 박스 */
+.slide {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  width: 100%; 
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  animation: slider 15s infinite linear;
+}
+/* 슬라이드 이미지 */
+.slide img {
+width: 100%; 
+height: 575px;
+}
+/* 슬라이드의 이동할 시간 */ 
+.slide:nth-child(1) {
+
+  animation-delay: 0;
+}
+.slide:nth-child(2) {
+
+  animation-delay: -5s;
+}
+.slide:nth-child(3) {
+
+  animation-delay: -10s;
+}
+/* 슬라이드 모션 */
+@keyframes slider {
+  0% {
+    transform: translateX(0);
+  }
+
+  26% {
+    transform: translateX(0);
+  }
+  33% {
+    transform: translateX(-100%);
+    animation-timing-function: step-end;
+  }
+  93% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+/* 버튼 정렬 */
+.btn-center {
+  	display: flex;
+	justify-content: center; /* 수평 가운데 정렬 */
+  	align-items: center; /* 수직 가운데 정렬 */
+  	position: sticky;
+  	top: 0;
+  	z-index: 1;
+}
+/* 버튼 그룹화 */
+.btn-group {
+	width: 100%;
+  display: flex;
+}
+/* 버튼 디자인 */
+.custom-btn {
+  width: 20%;
+  height: 50px;
+  font-size: 23px;
+  font-weight: bold;
+  background-color: black; 
+  color: white;
+  text-decoration: none;
+  display: flex; /* Flexbox 사용 */
+  justify-content: center; /* 수평 중앙 정렬 */
+  text-align: center;
+  padding-top: 10px; 
+  cursor : pointer;
+  overflow: hidden;
+}
+/* Make Plan 위치 */
+.container {
+  width: 100%;
+}
+/* 버튼 클릭시 이동할 위치의 텍스트 */
+#h1_container {
+	display: flex;
+	margin-left: 10%;
+	font-size : 10px;
+	font-weight: bold;
+	font-color: black;
+	justify-content: space-between; /* 하민 */
+}
+
+
+/* Make Plan */
+.make-box {
+  width: 80%;
+  height: 200px;
+  border: 5px solid black;
+  margin: 0 auto;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+}
+
+#searchForm {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+select {
+  width: 25%;
+  height: 50px;
+  text-align: center;
+  border-radius: 5px;
+  background-color: black; /* 조금 어두운 회색 배경색 지정 */
+  font-size: 24px; /* 텍스트 크기를 16px로 지정 */
+  font-style: bold;
+  margin: 0 70px; 
+  color: white;
+}
+
+select:focus{
+  outline:none;
+}
+
+#submitBtn {
+	height: 50px;
+	background-color: white;
+	border-radius: 5px;
+}
+
+#location-text {
+	font-size: 24px;
+	font-weight: bold;
+}
+
+.image-container{
+	display: flex;
+	justify-content: space-between;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.image-wrapper {
+  position: relative;
+  text-align: center; /* 이미지를 가운데 정렬 */
+}
+
+.image-wrapper img {
+  width: 275px;
+  height: 275px;
+}
+
+.caption {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  color: black;
+  font-size: 20px;
+  text-shadow: 0.1px 0.5px 0 black;
+  text-align: center; /* 가운데 정렬 */
+}
+
+.caption2 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 30px;
+  color: black;
+  font-size: 14px;
+  text-shadow: 0.1px 0.5px 0 black;
+  text-align: center; /* 가운데 정렬 */
+}
+
+.image-wrapper img {
+  transition: transform 0.3s ease; /* 호버 시 전환 효과를 부드럽게 만듦 */
+}
+
+.image-wrapper:hover img {
+  transform: scale(1.05); /* 호버 시 이미지를 약간 확대함 */
+}
+
+.custom-btn:hover {
+  background-color: #6c757d; /* 호버 시 배경색 변경 */
+  color: #fff; /* 호버 시 텍스트 색상 변경 */
+}
+
+.text-line {
+	width: 80%;
+	border-top: black 2px solid;
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 2%;
+}
+
+.home-retrun {
+	display: flex;
+	justify-content: right;
+  	align-items: center; 
+  	position: sticky;
+  	top: 50px; 
+  	z-index: 1;
+}
+
+.home-retrun-background {
+	background-color: black;
+	width: 50px;
+	height: 50px;
+	margin-top: 1px;
+	z-index: 1;
+	border-radius: 3px;
+	cursor : pointer;
+}
+
+.white-arrow {
+	width: 50px;
+	height: 50px;
+	margin-top: 1px;
+	transform: rotate(180deg);
+}
+
+/* ---------------------hamin------------------------ */
+
+/* 마우스 호버 시 버튼 색상 변경 */
+.transparent-button:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* 투명한 검정색으로 변경 */
+}
+.routerWithArrow {
+	display: flex;
+	justify-content: center; /* 수평 가운데 정렬 */
+    align-items: flex-end; /* 수직 가운데 정렬 */
+    margin-right: 10%;
+}
+.see-more {
+	background-color: transparent; /* 배경색을 투명하게 설정 */
+    border: none; /* 테두리 없앰 */
+    color: inherit; /* 텍스트 색상을 상속받음 */
+    padding: 10px 20px; /* 내부 여백 설정 */
+    font-size: 16px; /* 폰트 크기 설정 */
+    cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+}
+
+a {
+	color: black;
+}

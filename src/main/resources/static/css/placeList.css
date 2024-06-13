@@ -1,0 +1,401 @@
+@charset "UTF-8";
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+}
+
+body {
+   margin: 0;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   font-family: 'SUITE', sans-serif;
+}
+/* 지역 정렬 */
+.location-array {
+	position: absolute;
+	top: 7%;
+	height: 17%;
+	width: 96%;
+	display: flex;
+	justify-content: center;
+	margin-right: 2%;
+	margin-left: 2%;
+}
+/* 개별 지역 출력 */
+.container {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-right: 2%;
+	margin-left: 2%;
+}
+/* 개별 지역 버튼 */
+.circle-button {
+	width: 7%;
+	height: 70%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fff;
+	border-radius: 50%;
+	border: 1px solid gray;
+	overflow: hidden;
+	cursor: pointer;
+	position: relative; /* 이미지의 위치를 조정하기 위해 부모 요소에 상대적 위치 지정 */
+}
+/* 개별 지역 클릭시 */
+.circle-button:active {
+	background-color: white;
+	color: black;
+}
+/* 개별 지역 버튼 이미지 */
+.circle-button img {
+	width: 100px;
+	height: 100px;
+	position: absolute; /* 절대 위치 지정 */
+    top: 50%; /* 부모 요소의 세로 중앙 */
+    left: 50%; /* 부모 요소의 가로 중앙 */
+    transform: translate(-50%, -50%); /* 요소를 정확히 가운데로 이동 */
+}
+
+.location-name-array {
+	position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 93%;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.location-name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+}
+/* 검색창 전체네모 */
+.search-background {
+	background-color: black;
+	width: 75%;
+	min-height: 35px;
+	position: absolute;
+	top: 30%;
+	margin-left: 2%;
+	display: flex; /* Flexbox 사용 */
+	justify-content: center; /* 수평 가운데 정렬 */
+	align-items: center; /* 수직 가운데 정렬 */
+}
+/* 검색창 텍스트를 적는 인풋 네모 */
+.search-write-box {
+    background-color: white;
+    width: 60%;
+    height: 30px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    padding: 0 10px; 
+    box-sizing: border-box; 
+}
+
+/* 검색 버튼 스타일 */
+.search-button {
+    height: 30px; 
+    font-size: 14px;
+    background-color: black; 
+    color: white; 
+    border: 1px solid white; 
+    padding: 0 15px; 
+    cursor: pointer; 
+    margin-left: 10px;
+    
+}
+
+/* 폼 스타일 */
+#search-form {
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    width: 80%; 
+    padding: 5px; 
+    box-sizing: border-box;
+    margin-left: 7%; 
+}
+
+/* 필터 카테고리 정렬 */
+.filter2-array {
+	width: 75%;
+	min-height: 200px;
+	border: 1px solid gray;
+	margin-left: 2%;
+	position: absolute;
+	top: 35.5%;
+}
+/* 필터 카테고리 헤더 */
+.filter2-header-background {
+	background-color: black;
+	height: 35px;
+	align-items: center;
+	display: flex;
+}
+/* 필터 카테고리 테마 */
+.filter2-header-theme {
+	background-color: black;
+	color: white;
+	font-size: 14px;
+	position: relative;
+	border: none;
+	cursor: pointer;
+}
+/* 카테고리 체크박스 */
+.filter2-checkbox {
+	position: absolute;
+	top: 20%;
+	left: 1%;
+}
+.add-to-cart-button {
+	background-color: black;
+    color: white;
+    width: 20%;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 10px;
+}
+/* 장바구니 정렬 */
+#cart-section {
+	position: fixed;
+	top: 30%;
+	left: 78%;
+	width: 20%;
+	height: 79.3%;
+	border: 1px solid gray;
+	z-index: 1;
+	background-color: white;
+	transition: top 0.5s ease; /* 부드러운 이동을 위한 트랜지션 추가 */
+}
+/* 장바구니 헤더 */
+.select-list-header {
+	background-color: black;
+	color: white;
+	font-size: 14px;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	height: 35px;
+}
+.point-text {
+	border-bottom: 1px solid black;
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 20px;
+    margin-bottom: 25px;
+}
+.removeItem {
+	background-color: black;
+    color: white;
+    width: 30%;
+    height: 20px;
+    border-radius: 3px;
+    font-size: 10px;
+    position: relative;
+    bottom: 2px;
+}
+.point-button-array {
+	position: relative;
+	justify-content: center;
+    align-items: center;
+	display: flex;
+	margin-bottom: 5%;
+}
+.cart-clear-button {
+	background-color: black;
+    color: white;
+    width: 45%;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 10px;
+    margin-right: 3%;
+}
+.route-button {
+	background-color: black;
+    color: white;
+    width: 45%;
+    height: 30px;
+    border-radius: 3px;
+    font-size: 10px;
+}
+#mainContent {
+    flex: 1;
+}
+
+/* 장소 리스트 출력 */
+.place-list-array {
+	border: 1px solid gray;
+	position: relative;
+	top: 60%;
+	margin-left: 2%;
+	width: 75%;
+	min-height: 150px;
+}
+/* 지역 카테고리 아랫 라인 */
+.start-line {
+	width: 90%;
+	border-top: gray 1px solid;
+	position: absolute;
+	top: 28%;
+	left: 5%;
+}
+.st-text {
+	position: relative;
+    bottom: 10px;
+    left: 100%;
+    transform: translate(-50%, -50%);
+}
+.st-img {
+	height: 20px;
+	width: 20px;
+	position: relative;
+}
+
+.filter-list1 {
+	flex-wrap: wrap; /* 요소들이 한 줄을 넘어가면 줄바꿈되도록 함 */
+	width: 100%; /* 부모 요소에 따라 전체 너비를 차지하도록 함 */
+	box-sizing: border-box; /* 내부 여백과 테두리를 포함한 요소의 전체 크기를 계산하도록 함 */
+}
+.checkbox input {
+  display: none;
+}
+.checkbox_icon {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: black;
+  position: relative;
+  top: 5px;
+  cursor: pointer;
+}
+.checkbox_text {
+	position: relative;
+  	top: 2.5px;
+}
+.checkbox_icon::before, .checkbox_icon::after {
+  content: ''; 
+  display: inline-block; 
+  width: 2px;
+  height: 0; 
+  background-color: white;
+  position: absolute; 
+  transform-origin: left top; 
+}
+
+.checkbox_icon::before {
+  top: 9px; 
+  left: 2px; 
+  transform: rotate(-45deg); 
+}
+.checkbox_icon::after {
+  top: 16px; 
+  left: 9px; 
+  transform: rotate(-135deg); 
+}
+.checkbox input:checked + .checkbox_icon {
+  border-color: white;
+}
+.checkbox input:checked + .checkbox_icon::before {
+  height: 9px;
+  transition: all 0.15s ease;
+}
+.checkbox input:checked + .checkbox_icon::after {
+  height: 14px;
+  transition: all 0.15s ease 0.15s; 
+}
+.filter-list1 label {
+	margin-right: 10px; /* 라벨 오른쪽 간격을 늘립니다. */
+	font-size: 14px;
+}
+.filter-list1 input[type="checkbox"] {
+	margin-right: 10px; /* 체크박스 오른쪽 간격을 늘립니다. */
+}
+.place-list {
+	padding-top: 450px;
+	list-style: none; /* 기본 리스트 스타일 제거 */
+}
+#place-list {
+	list-style: none; /* 기본 리스트 스타일 제거 */
+}
+/* 각 리스트 아이템에 대한 스타일 */
+.place-item {
+	position: relative; /* 절대 위치를 위한 기준 요소 */
+	margin-bottom: 20px;
+	list-style-type: none;
+}
+/* 첫 번째 아이템의 위쪽에 여백 추가 */
+.place-item.first-item {
+	margin-top: 450px; /* 첫 번째 아이템의 위쪽에 450px 여백 추가 */
+}
+/* 컨텐츠 스타일 */
+.place-content {
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    width: 75%;
+    height: 200px;
+	margin-left: 2%;
+}
+.place-content:hover {
+	background-color: #d4d4d4;
+}
+/* 링크 스타일 */
+.place-link {
+	display: flex;
+	align-items: center;
+	text-decoration: none;
+	color: inherit;
+	flex: 1; /* 버튼을 오른쪽으로 밀기 위해 flex-grow 사용 */
+}
+/* 이미지 스타일 */
+.place-image {
+	width: 150px;
+	margin-right: 20px;
+	margin-left: 20px;
+}
+/* 텍스트 정보 스타일 */
+.place-info {
+	display: flex;
+	flex-direction: column;
+}
+.place-info span {
+	display: block;
+	margin-bottom: 5px; /* 각 줄 간격 조절 */
+}
+/* 버튼 스타일 */
+.add-to-cart-button {
+	position: absolute;
+    left: 60%;
+    transform: translateX(-50%); 
+}
+.no-result-place {
+	text-align: center;
+    color: black;
+    position: absolute;
+    top: 70%;
+    left: 10%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+}
+li {
+	list-style-type: none;
+}
+#map {
+	height: 500px;
+	width: 100%;
+}
+
